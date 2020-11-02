@@ -8,12 +8,12 @@ class Account
     @statement = {}
   end
 
-  def credit(amount, date = Date.today)
+  def deposit(amount, date = Date.today)
     @balance += amount 
     @statement.store(date, amount)
   end
 
-  def debit(amount, date = Date.today)
+  def withdraw(amount, date = Date.today)
     raise if amount > @balance 
     @balance -= amount  
     @statement.store(date, -amount)
