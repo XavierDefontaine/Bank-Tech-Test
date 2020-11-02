@@ -9,13 +9,13 @@ class Account
   end
 
   def credit(amount, date = Date.today)
-    @balance += amount
+    @balance += amount 
     @statement.store(date, amount)
   end
 
   def debit(amount, date = Date.today)
-    @balance -= amount
+    raise if amount > @balance 
+    @balance -= amount  
     @statement.store(date, -amount)
   end
-
 end
