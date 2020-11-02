@@ -13,8 +13,9 @@ class Account
     @statement.store(date, amount)
   end
 
-  def debit(amount)
+  def debit(amount, date = Date.today)
     @balance -= amount
+    @statement.store(date, -amount)
   end
 
 end

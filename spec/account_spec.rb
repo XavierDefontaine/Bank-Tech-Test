@@ -24,10 +24,25 @@ describe Account do
       expect(subject.statement).to include("10/01/2012", "13/01/2012")
     end
 
-    describe '#debit' do
-      it 'Decreases the balance amount' do
-        expect { subject.debit(1000) }.to change { subject.balance }.by(-1000)
-      end
+    it 'Also logs the transaction value as positive' do
+      subject.credit(1000, "10/01/2012")
+      expect(subject.statement).to include("10/01/2012" => 1000)
+    end
+  end
+
+  describe '#debit' do
+    it 'Decreases the balance amount' do
+      expect { subject.debit(1000) }.to change { subject.balance }.by(-1000)
+    end
+
+    it 'Also logs the date of the transaction' do
+      subject.debit(1000, "10/01/2012")
+      expect(subject.statement).to include("10/01/2012")
+    end
+
+    it 'Also logs the transaction value as negative' do
+      subject.debit(1000, "10/01/2012")
+      expect(subject.statement).to include("10/01/2012" => -1000)
     end
   end
 end
