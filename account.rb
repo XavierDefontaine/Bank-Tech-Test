@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'date'
 
 class Account
@@ -15,25 +16,27 @@ class Account
   end
 
   def withdraw(amount, date = Date.today)
-    raise "Forget about it" if amount > @balance 
+    raise 'Forget about it' if amount > @balance
+
     @balance -= amount.round(2)
     @statement.store(date, [-amount, balance])
   end
 
   def headers
-    "date       || credit  || debit  || balance\n" 
+    "date       || credit  || debit  || balance\n"
   end
 
   def formatter
-  statement.to_a.reverse.map {|trx| trx[0] + " || "  + 
-  if trx[1][0] < 0 
-    "      " + " || "  + sprintf('%.2f', trx[1][0].abs).to_s + " || "
-  else sprintf('%.2f', trx[1][0].abs).to_s + " || " + "      " + " || "
-  end + sprintf('%.2f', trx[1][1].abs).to_s
-  }.join("\n")
+    statement.to_a.reverse.map do |trx|
+      trx[0] + ' || ' +
+        if (trx[1][0]).negative?
+          "       || #{format('%.2f', trx[1][0].abs)} || "
+        else "#{format('%.2f', trx[1][0].abs)} ||        || "
+        end + format('%.2f', trx[1][1].abs).to_s
+    end.join("\n")
   end
 
   def print
-   return headers + formatter
+    headers + formatter
   end
 end
