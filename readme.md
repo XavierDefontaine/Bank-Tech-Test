@@ -24,6 +24,7 @@ date       || credit  || debit  || balance
 10/01/2012 || 1000.00 ||        || 1000.00
 ```
 
-INPUT | OUTPUT
-
+INPUT                           || OUTPUT
+date       || credit  || debit  || balance
+10/01/2012 || 1000.00 ||        || 1000.00
 
