@@ -49,7 +49,7 @@ describe Account do
     end
 
     it 'Raises an error if trying to withdraw more than the balance remainder' do
-      expect { user.withdraw(2000) }.to raise_error
+      expect { user.withdraw(2000) }.to raise_error "Forget about it"
     end
   end
 
@@ -65,12 +65,10 @@ describe Account do
       expect(subject.print).to eq("10/01/2012 || 1000.00 ||        || 1000.00")
     end
 
-    # 13/01/2012 || 2000.00 ||        || 3000.00
-    # 10/01/2012 || 1000.00 ||        || 1000.00
     it 'Should return two formatted dates, credits and balances' do
       subject.deposit(1000.00, "10/01/2012")
       subject.deposit(2000.00, "13/01/2012")
-      expect(subject.print).to eq("13/01/2012 || 2000.00 ||        || 3000.00\n12/11/2020 || 1000.00 ||        || 1000.00")
+      expect(subject.print).to eq("13/01/2012 || 2000.00 ||        || 3000.00\n10/01/2012 || 1000.00 ||        || 1000.00")
     end
   end
 end
