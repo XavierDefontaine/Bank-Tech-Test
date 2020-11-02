@@ -12,8 +12,10 @@ describe Account do
     it 'Increases the balance amount' do
       expect{subject.credit(1000)}.to change{(subject.balance)}.by(1000)
     end
-    it 'Also logs the date' do
-      expect{subject.credit(1000)}.to change{(subject.balance)}.by(1000)
+
+    it 'Also logs the date of the transaction' do
+      subject.credit(1000, 10-01-2012)
+      expect(subject.statement).to include(10-01-2012)
     end
     
   end
