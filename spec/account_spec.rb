@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './account'
+require './lib/account'
 describe Account do
   describe '#balance' do
     it 'starts at zero' do
@@ -52,38 +52,19 @@ describe Account do
     end
   end
 
-  describe '#headers' do
-    it 'Should print the headers' do
-      expect(subject.headers).to eq("date       || credit  || debit  || balance\n")
-    end
-  end
-
-  describe '#formatter' do
-    it 'Should return the formatted date, credit and balance' do
-      subject.deposit(1000.00, '10/01/2012')
-      expect(subject.formatter).to eq('10/01/2012 || 1000.00 ||        || 1000.00')
-    end
-
-    it 'Should return two formatted dates, credits and balances' do
-      subject.deposit(1000.00, '10/01/2012')
-      subject.deposit(2000.00, '13/01/2012')
-      expect(subject.formatter).to eq("13/01/2012 || 2000.00 ||        || 3000.00\n10/01/2012 || 1000.00 ||        || 1000.00")
-    end
-
+  describe '#print' do
     let(:user) { Account.new(900) }
 
     it 'Debit transaction should be listed in the other colum' do
       user.withdraw(500.00, '14/01/2012')
-      expect(user.formatter).to eq('14/01/2012 ||        || 500.00 || 400.00')
+      expect(user.print_statement).to eq("date       || credit  || debit  || balance\n14/01/2012 ||        || 500.00 || 400.00")
     end
-  end
 
-  describe '#print' do
     it 'prints out the statement to the console' do
       subject.deposit(1000.00, '10/01/2012')
       subject.deposit(2000.00, '13/01/2012')
       subject.withdraw(500.00, '14/01/2012')
-      expect(subject.print).to eq("date       || credit  || debit  || balance\n14/01/2012 ||        || 500.00 || 2500.00\n13/01/2012 || 2000.00 ||        || 3000.00\n10/01/2012 || 1000.00 ||        || 1000.00")
+      expect(subject.print_statement).to eq("date       || credit  || debit  || balance\n14/01/2012 ||        || 500.00 || 2500.00\n13/01/2012 || 2000.00 ||        || 3000.00\n10/01/2012 || 1000.00 ||        || 1000.00")
     end
   end
 end
