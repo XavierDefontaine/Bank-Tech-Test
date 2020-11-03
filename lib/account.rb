@@ -2,6 +2,7 @@
 
 require_relative 'printer'
 
+
 class Account
   attr_reader :balance, :statement
 
