@@ -110,3 +110,25 @@ As a client
 So I can see how much I have left
 I want to be able to see my balance by each transaction
 ```
+
+# Bonus user story
+
+```
+As a client, 
+So I can add an old deposit transaction missing
+I want to add a deposit with an old date in the past and have my balance updated accordingly.
+```
+### Acceptance criteria
+
+**Given** a client makes a deposit of 1000 on 10-01-2012  
+**And** a deposit of 2000 on 13-01-2012  
+**And** a forgotten deposit of 500 on 09-01-2012  
+**When** they prints their bank statement  
+**Then** they would see
+
+```
+date       || credit  || debit  || balance
+13/01/2012 || 2000.00 ||        || 3000.00
+10/01/2012 || 1000.00 ||        || 1000.00
+09/01/2012 ||  500.00 ||        ||  500.00
+```
