@@ -12,12 +12,12 @@ private
   end
 
   def formatter
-    statement.to_a.reverse.map do |trx|
-      trx[0] + ' || ' +
-        if (trx[1][0]).negative?
-          "       || #{format('%.2f', trx[1][0].abs)} || "
-        else "#{format('%.2f', trx[1][0].abs)} ||        || "
-        end + format('%.2f', trx[1][1].abs).to_s
+    statement.reverse.map do |trx|
+      trx[:date] + ' || ' +
+        if trx[:credit].nil?
+          "       || #{format('%.2f', trx[:debit].abs)} || "
+        else "#{format('%.2f', trx[:credit].abs)} ||        || "
+        end + format('%.2f', trx[:balance].abs).to_s
     end.join("\n")
   end
 end
