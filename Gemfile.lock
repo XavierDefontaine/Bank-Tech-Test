@@ -8,6 +8,7 @@ GEM
     parser (2.7.2.0)
       ast (~> 2.4.1)
     rainbow (3.0.0)
+    rake (13.0.1)
     regexp_parser (1.8.2)
     rexml (3.2.4)
     rspec (3.10.0)
@@ -45,9 +46,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rake
   rspec
   rubocop
   simplecov
+
+RUBY VERSION
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.1.4
