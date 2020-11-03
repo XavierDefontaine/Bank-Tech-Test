@@ -26,7 +26,7 @@ A programme that allows a user to manage their personal finances.
 - I used the IRB console to spike and follow up with meaningful tests
 - I followed the red/green/refactor until all criterias where met, and decided to add an edge case (error thrown if trying to withdraw more than the balance) for good measure
 - I made sure my variables and methods were properly named and SRP followed to allow for flexible and maintanable code 
-- As part of my final refactor, I decided to entirely change the data stored for each transaction to a Hash to help with clarity and extracted the print_statement function as a module.
+- As part of my final refactor, I decided to entirely change the data structure for each transaction to a Hash and extracted the transactions to a new class and the Print function to a module.
 
 
 ### Requirements:

@@ -10,7 +10,6 @@ describe Account do
 
   describe '#deposit' do
 
-    # let(:transaction1) {double(date:, credit:, debit:, balance:)}
     before(:each) do
       subject.deposit(1000, '10/01/2012')
       subject.deposit(500, '13/01/2012')
@@ -50,6 +49,7 @@ describe Account do
     it 'Also logs the transaction value as negative and balance' do
       account.withdraw(1000, '10/01/2012')
       expect(account.statement[0].debit).to eq(-1000)
+      expect(account.statement[0].balance).to eq(200)
     end
 
     it 'Raises an error if trying to withdraw more than the balance remainder' do
@@ -59,6 +59,8 @@ describe Account do
 
   describe '#print' do
     let(:account) { Account.new(900) }
+    let(:transaction_1) { double("transaction 1", date: '10/01/2012', credit: 1000, balance: 1000) }
+    let(:transaction_1) { double("transaction 2", date: '13/01/2012', credit: 500, balance: 1500) }
 
     it 'Debit transaction should be listed in the other column' do
       account.withdraw(500.00, '14/01/2012')
