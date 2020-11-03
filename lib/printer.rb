@@ -2,7 +2,7 @@
 module Printer
 
   def print_statement
-    headers + formatter
+    puts headers + formatter
   end
 
 private 
@@ -12,12 +12,25 @@ private
   end
 
   def formatter
-    statement.reverse.map do |trx|
-      trx[:date] + ' || ' +
-        if trx[:credit].nil?
-          "       || #{format('%.2f', trx[:debit].abs)} || "
-        else "#{format('%.2f', trx[:credit].abs)} ||        || "
-        end + format('%.2f', trx[:balance].abs).to_s
+   statement.reverse.map do |transaction|
+      transaction[:date] + column +
+        if transaction[:credit].nil?
+           blank_space + column + "#{decimal_formatter(transaction[:debit])}"
+        else "#{decimal_formatter(transaction[:credit])}" + column + blank_space
+        end + column + decimal_formatter(transaction[:balance])
     end.join("\n")
   end
+
+  def decimal_formatter(amount)
+    format('%.2f', amount.abs)
+  end
+
+  def column
+    ' || ' 
+  end
+
+  def blank_space
+    "      "
+  end
+
 end
