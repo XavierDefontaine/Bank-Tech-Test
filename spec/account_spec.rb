@@ -9,7 +9,6 @@ describe Account do
   end
 
   describe '#deposit' do
-
     before(:each) do
       subject.deposit(1000, '10/01/2012')
       subject.deposit(500, '13/01/2012')
@@ -35,7 +34,7 @@ describe Account do
 
   describe '#withdraw' do
     let(:account) { Account.new(1200) }
-    #allows to open a new account with 1200 on
+    # allows to open a new account with 1200 on
 
     it 'Decreases the balance amount' do
       expect { account.withdraw(1000) }.to change { account.balance }.by(-1000)
