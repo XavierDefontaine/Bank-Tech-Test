@@ -1,11 +1,11 @@
+# frozen_string_literal: true
 
 module Printer
-
   def print_statement
     headers + formatter
   end
 
-private 
+  private
 
   def headers
     "date       || credit  || debit  || balance\n"
