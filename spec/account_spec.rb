@@ -9,6 +9,8 @@ describe Account do
   end
 
   describe '#deposit' do
+
+    # let(:transaction1) {double(date:, credit:, debit:, balance:)}
     before(:each) do
       subject.deposit(1000, '10/01/2012')
       subject.deposit(500, '13/01/2012')
@@ -19,16 +21,16 @@ describe Account do
     end
 
     it 'Logs the date of the transaction' do
-      expect(subject.statement[0][:date]).to include('10/01/2012')
+      expect(subject.statement[0].date).to include('10/01/2012')
     end
 
     it 'Logs a second transaction date' do
-      expect(subject.statement[0][:date]).to include('10/01/2012')
-      expect(subject.statement[1][:date]).to include('13/01/2012')
+      expect(subject.statement[0].date).to include('10/01/2012')
+      expect(subject.statement[1].date).to include('13/01/2012')
     end
 
     it 'Logs the balance and credit value as positive ' do
-      expect(subject.statement[0][:credit]).to eq(1000)
+      expect(subject.statement[0].credit).to eq(1000)
     end
   end
 
@@ -42,12 +44,12 @@ describe Account do
 
     it 'Also logs the date of the transaction' do
       account.withdraw(1000, '10/01/2012')
-      expect(account.statement[0][:date]).to include('10/01/2012')
+      expect(account.statement[0].date).to include('10/01/2012')
     end
 
     it 'Also logs the transaction value as negative and balance' do
       account.withdraw(1000, '10/01/2012')
-      expect(account.statement[0][:debit]).to eq(-1000)
+      expect(account.statement[0].debit).to eq(-1000)
     end
 
     it 'Raises an error if trying to withdraw more than the balance remainder' do
