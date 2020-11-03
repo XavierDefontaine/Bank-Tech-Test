@@ -9,19 +9,19 @@ class Account
 
   def initialize(balance = 0)
     @balance = balance
-    @statement = {}
+    @statement = []
   end
 
   def deposit(amount, date = Time.now)
-    @balance += amount.round(2)
-    @statement.store(date, [amount, balance])
+    @balance += amount
+    @statement << {date: date, credit: amount, balance: @balance}
   end
 
   def withdraw(amount, date = Time.now)
     raise 'Forget about it' if amount > @balance
 
-    @balance -= amount.round(2)
-    @statement.store(date, [-amount, balance])
+    @balance -= amount
+    @statement << {date: date, debit: -amount, balance: @balance}
   end
 
 end
