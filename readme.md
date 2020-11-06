@@ -111,7 +111,7 @@ So I can see how much I have left
 I want to be able to see my balance by each transaction
 ```
 
-# Bonus user story
+# Bonus user story (TODO)
 
 ```
 As a client, 
@@ -132,3 +132,26 @@ date       || credit  || debit  || balance
 10/01/2012 || 1000.00 ||        || 1000.00
 09/01/2012 ||  500.00 ||        ||  500.00
 ```
+
+# Bonus Bonus user story (TODO)
+```
+As a user, I’d like to be able to choose some options for my statement.
+If I don’t pass options it’s the default statement (like in the specs).
+```
+
+Here are some options I can choose:
+* Show dates in american format instead (mm/dd/yyyy instead of dd/mm/yyyy)
+* Have both debit and credit appear in the same column. Debit show between parentheses. The column name is transaction
+* Right to left -> the order of columns is reversed
+
+### Acceptance criteria
+date || credit || debit || balance
+14/01/2012 || || 500.00 || 2500.00
+13/01/2012 || 2000.00 || || 3000.00
+10/01/2012 || 1000.00 || || 1000.00
+this would be the same statement, with all options active:
+balance || transaction || date
+2500.00 || (500.00) || 01/14/2012
+3000.00 || 2000.00 || 01/13/2012
+1000.00 || 1000.00 || 01/10/2012
+Of course, I can choose 0, 1, 2 or more options.
