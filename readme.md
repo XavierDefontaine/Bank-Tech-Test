@@ -21,7 +21,7 @@ A programme that allows a user to manage their personal finances.
 ```
 ## My approach
 
-- I used TDD and best OOP practices
+- I used BDD and best OOP practices
 - I worked off the acceptance criterias provided and wrote user stories for clarity
 - I used the IRB console to spike and follow up with meaningful tests
 - I followed the red/green/refactor until all criterias where met, and decided to add an edge case (error thrown if trying to withdraw more than the balance) for good measure
